@@ -2,3 +2,10 @@ node_modules
 .DS_STORE
 notes.txt
 dist/
+
+# P-EM3.4 security defensive: never accidentally commit OAuth keys
+credentials.json
+gcp-oauth.keys.json
+*.keys.json
+token.json
+.gauth/

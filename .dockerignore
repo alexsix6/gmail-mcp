@@ -1,0 +1,50 @@
+# P-EM3.4 follow-up (2026-05-10): defensive .dockerignore.
+# Sin esto, docker build transferiría 971MB de node_modules innecesarios
+# (se reinstalan dentro del container vía npm install).
+# Reference: HOT/feedback-dockerignore-defensive-from-day-zero.md
+
+# Dependencies — regenerable via npm install in Dockerfile (top offender)
+node_modules/
+.npm/
+
+# Build artifacts
+dist/
+build/
+*.tsbuildinfo
+
+# Lock alternatives (dejar uno solo según el package manager)
+# pnpm-lock.yaml  # uncomment si usas npm-only
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Secrets — nunca al image
+.env
+.env.*
+!.env*.example
+
+# Test + coverage
+coverage/
+.nyc_output/
+test/
+*.spec.js.snap
+
+# Cache + logs
+.cache/
+.pytest_cache/
+tmp/
+temp/
+logs/
+*.log
+*.tmp
+
+# Editor + OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Docs + readme — nice to keep dentro pero no bloquean
+# README.md
